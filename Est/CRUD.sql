@@ -18,7 +18,7 @@ SELECT l.listing_id, l.title, l.price, l.condition, u.first_name, u.last_name
 FROM LISTING l
 JOIN USER u ON l.seller_id = u.user_id
 WHERE l.status = 'active'
-ORDER BY l.created_at DESC;
+ORDER BY l.created_at DESC; -- 降序; ASC为升序
 
 -- Get user wishlist items with listing details
 SELECT w.wishlist_id, l.title, l.price, l.condition
