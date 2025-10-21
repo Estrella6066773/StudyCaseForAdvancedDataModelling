@@ -3,6 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/Est/CreateTables.sql" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/Est/InsertBaseData.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Est/Select.sql" dialect="SQLite" />
     <file url="PROJECT" dialect="SQLite" />
   </component>
 </project>

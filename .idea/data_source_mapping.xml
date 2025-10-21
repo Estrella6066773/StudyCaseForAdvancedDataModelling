@@ -3,5 +3,6 @@
   <component name="DataSourcePerFileMappings">
     <file url="file://$PROJECT_DIR$/Est/CreateTables.sql" value="7ffbaaf8-01b3-44c9-9a50-6688825ea9ff" />
     <file url="file://$PROJECT_DIR$/Est/InsertBaseData.sql" value="7ffbaaf8-01b3-44c9-9a50-6688825ea9ff" />
+    <file url="file://$PROJECT_DIR$/Est/Select.sql" value="7ffbaaf8-01b3-44c9-9a50-6688825ea9ff" />
   </component>
 </project>
