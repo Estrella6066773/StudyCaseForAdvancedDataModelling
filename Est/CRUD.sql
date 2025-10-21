@@ -1,37 +1,61 @@
 -- Create
--- 插入新用户
+-- Add a user
 INSERT INTO USER (university_id, email, password_hash, first_name, last_name, phone, is_verified)
-VALUES (1, 'zhangsan@tsinghua.edu.cn', 'hashed_password_123', '张', '三', '13800138001', 1);
+VALUES (1, 'john.doe@example.com', 'hashed_password_123', 'John', 'Doe', '123-456-7890', 1);
 
--- 插入另一个用户（使用默认值）
+-- Add an unverified user
 INSERT INTO USER (university_id, email, password_hash, first_name, last_name)
-VALUES (2, 'lisi@pku.edu.cn', 'hashed_password_456', '李', '四');
+VALUES (2, 'jane.smith@example.com', 'hashed_password_456', 'Jane', 'Smith');
 
--- 查询所有已验证的用户
-SELECT user_id, first_name, last_name, email, phone, join_date
-FROM USER
-WHERE is_verified = 1
-ORDER BY join_date DESC;
+-- Create a new textbook listing
+INSERT INTO LISTING (seller_id, primary_category_id, title, description, condition, price, campus_id)
+VALUES (1, 1, 'Calculus Textbook 5th Edition', 'Excellent condition calculus textbook, barely used', 'Like New', 45.99, 1);
 
--- 查询特定邮箱的用户（登录验证）
-SELECT user_id, email, password_hash, first_name, last_name, is_verified, status
-FROM USER
-WHERE email = 'zhangsan@tsinghua.edu.cn';
 
--- 更新用户手机号和验证状态
+-- Read
+-- Retrieve all active listings with seller information
+SELECT l.listing_id, l.title, l.price, l.condition, u.first_name, u.last_name
+FROM LISTING l
+JOIN USER u ON l.seller_id = u.user_id
+WHERE l.status = 'active'
+ORDER BY l.created_at DESC;
+
+-- Get user wishlist items with listing details
+SELECT w.wishlist_id, l.title, l.price, l.condition
+FROM WISHLIST w
+JOIN LISTING l ON w.listing_id = l.listing_id
+WHERE w.user_id = 1
+AND l.status = 'active';
+
+
+-- Update
+-- Mark user as verified and update status
+UPDATE USER
+SET is_verified = 1,
+    status = 'active'
+WHERE user_id = 2 AND email = 'jane.smith@student.edu';
+
+-- Update user binding and verified status
 UPDATE USER
 SET phone = '13800138002', is_verified = 1
 WHERE user_id = 1;
 
--- 停用用户账号
-UPDATE USER
-SET status = 'inactive'
-WHERE email = 'lisi@pku.edu.cn' AND status = 'active';
+-- Update listing price for a specific item
+UPDATE LISTING
+SET price = 39.99,
+    description = 'Price reduced! Calculus textbook in excellent condition'
+WHERE listing_id = 1;
 
--- 删除未验证的测试用户
+
+--Delete
+-- Remove an item from user's wishlist
+DELETE FROM WISHLIST
+WHERE user_id = 1 AND listing_id = 3;
+
+-- Delete testing user which is unverified.
 DELETE FROM USER
 WHERE is_verified = 0 AND join_date < date('now', '-7 days');
 
--- 删除特定用户（谨慎使用）
-DELETE FROM USER
-WHERE user_id = 100 AND status = 'inactive';
+-- Delete a delivery address for a user
+DELETE FROM DELIVERY_ADDRESS
+WHERE address_id = 2 AND user_id = 1;

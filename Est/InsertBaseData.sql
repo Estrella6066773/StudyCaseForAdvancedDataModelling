@@ -30,7 +30,9 @@ INSERT INTO USER (university_id, email, password_hash, first_name, last_name, ph
     (2, 'wangwu@pku.edu.cn', 'hashed_password_3', 'Wu', 'Wang', '13800138003', 1, 'active'),
     (3, 'zhaoliu@fudan.edu.cn', 'hashed_password_4', 'Liu', 'Zhao', '13800138004', 1, 'active'),
     (4, 'sunqi@sjtu.edu.cn', 'hashed_password_5', 'Qi', 'Sun', '13800138005', 1, 'active'),
-    (5, 'zhouba@zju.edu.cn', 'hashed_password_6', 'Ba', 'Zhou', '13800138006', 1, 'active');
+    (5, 'zhouba@zju.edu.cn', 'hashed_password_6', 'Ba', 'Zhou', '13800138006', 1, 'active'),
+    (100, 'example@test.com', 'hashed_password_7', 'Shi', 'Ce', '13800138100', 0, 'active')
+;
 
 -- 插入收货地址数据
 INSERT INTO DELIVERY_ADDRESS (user_id, address_line1, address_line2, city, area) VALUES
